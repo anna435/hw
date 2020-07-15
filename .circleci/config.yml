@@ -1,11 +1,9 @@
-
-version: 3
 jobs:
 build:
 docker:
 - image: circleci/python:3.6.4
 steps:
-- checkout
+- checkout     <-можно выкинуть
 - run: sudo pip install jupyter_client
 - run: sudo pip install nbconvert
 - run: sudo pip install numpy
@@ -13,12 +11,7 @@ steps:
 - run: sudo pip install sklearn
 - run: sudo python3 -m pip install ipykernel
 - run: sudo python3 -m ipykernel install --user
-- run: 
-command: 
-chmod +x run.sh 
-./run.sh
-paths: 
--"venv"
+- run: jupyter-nbconvert --execute ./homework1.ipynb
 - store_artifacts:
 path: ./homework1.html
-destination: test-reports 
+destination: homework1.html 
